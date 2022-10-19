@@ -45,9 +45,9 @@ namespace BaiTap3
             for (var i = 0; i < this.label.Count(); i++)
                 label[i] = i;
             listCanh = new List<Canh>();
-            for(var i =0; i < this.soDinh-1; i++)
+            for (var i = 0; i < this.soDinh-1; i++)
             {
-                for(var j=i+1; j< this.soDinh; j++)
+                for (var j = i + 1; j < this.soDinh; j++)
                 {
                     if (this.data[i, j] > 0)
                     {
@@ -62,6 +62,8 @@ namespace BaiTap3
         }
         public void Kruskal()
         {
+            Console.WriteLine("Giai thuat Kruskal");
+
             var tree = new List<Canh>();
             KhoiTaoCacCanh();
             listCanh.Sort((x, y) => x.trongSo.CompareTo(y.trongSo));
@@ -72,10 +74,14 @@ namespace BaiTap3
                 if (tree.Count == soDinh - 1)
                     break;
             }
+            Console.WriteLine("Tap canh cua cay khung nho nhat:");
+            var trongSoCay = 0;
             foreach(var item in tree)
             {
-                Console.WriteLine("dau: {0}, cuoi: {1}, trong so: {2}", item.dinhDau, item.dinhCuoi, item.trongSo);
+                trongSoCay += item.trongSo;
+                Console.WriteLine("{0} - {1}: {2}", item.dinhDau, item.dinhCuoi, item.trongSo);
             }
+            Console.WriteLine("Trong so cua cay khung nho nhat: {0}", trongSoCay);
         }
 
         public bool IsCircle(int idx)
